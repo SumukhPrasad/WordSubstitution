@@ -1,5 +1,6 @@
 <script>
 	import WordInput from "./components/WordInput.svelte";
+	import WordMeanings from "./components/WordMeanings.svelte";
 </script>
 
 <svelte:head>
@@ -12,6 +13,7 @@
 </svelte:head>
 <main>
 	<WordInput />
+	<WordMeanings />
 </main>
 
 <style>
