@@ -1,5 +1,5 @@
 <script>
-	
+	import WordInput from "./components/WordInput.svelte";
 </script>
 
 <svelte:head>
@@ -11,7 +11,7 @@
 		</style>
 </svelte:head>
 <main>
-	<h1>WordSubstitution</h1>
+	<WordInput />
 </main>
 
 <style>
