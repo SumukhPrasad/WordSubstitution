@@ -4443,15 +4443,15 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			style = element("style");
-    			style.textContent = "body {\n\t\t\tmax-width: 600px;\n\t\t\tmax-height: 300px;\n\t\t}";
+    			style.textContent = "body {\n\t\t\twidth: 600px;\n\t\t\theight: 300px;\n\t\t}";
     			t1 = space();
     			main = element("main");
     			create_component(wordinput.$$.fragment);
     			t2 = space();
     			create_component(wordmeanings.$$.fragment);
     			add_location(style, file, 6, 1, 153);
-    			attr_dev(main, "class", "svelte-1ad9dpu");
-    			add_location(main, file, 13, 0, 242);
+    			attr_dev(main, "class", "svelte-1l61xbu");
+    			add_location(main, file, 13, 0, 234);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
