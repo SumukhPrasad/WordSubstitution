@@ -1,21 +1,19 @@
 <script>
-     import { currentSearchAndResults } from "../lib/sharedData.js";
+     import { currentWord } from "../lib/sharedData.js";
      import { getSchema } from "../lib/dataRetriever.js";
 
      const schema = getSchema();
 </script>
 
-<main>
-     {#if $currentSearchAndResults.search == null}
+<section>
+     {#if $currentWord == null}
           No word/pattern selected.
      {:else}
-     {#each $currentSearchAndResults.content as wordOrPatternArray}
-          {schema[0]}: {wordOrPatternArray[0]}<br>
-          {schema[1]}: {wordOrPatternArray[1]}<br>
-          {schema[2]}: {wordOrPatternArray[2] == "" ? "None." : wordOrPatternArray[2]}<br>
-     {/each}
+          {schema[0]}: {$currentWord[0]}<br>
+          {schema[1]}: {$currentWord[1]}<br>
+          {schema[2]}: {$currentWord[2] == "" ? "None." : $currentWord[2]}<br>
      {/if}
-</main>
+</section>
 
 <style>
      

@@ -1,7 +1,8 @@
 <script>
      import { getData, getSchema } from "../lib/dataRetriever.js";
-     import { currentSearchAndResults } from '../lib/sharedData.js';
-
+     import { currentSearchAndResults, currentWord } from '../lib/sharedData.js';
+     import SearchSelect from "./subcomponents/SearchSelect.svelte";
+     $currentWord = null;
      const schema = getSchema().slice(0, -1);
      $currentSearchAndResults = {
           content: [],
@@ -16,9 +17,9 @@
      }
 </script>
 
-<main>
+<section>
      <form on:submit|preventDefault>
-          <input type="text" placeholder="Word" on:keyup|preventDefault={handleKeyup}><br>
+          <input type="text" autocapitalize="false" autocomplete="false" spellcheck="false" placeholder="Word" on:keyup|preventDefault={handleKeyup}><br>
           Search for: <select bind:value={$currentSearchAndResults.selector}>
                <option value="word">Words</option>
                <option value="pattern">Patterns</option>
@@ -31,10 +32,10 @@
      </form>
      <div>
           {#each $currentSearchAndResults.content as suggestion}
-               {@html suggestion[schema.indexOf($currentSearchAndResults.searchFilter)].replaceAll($currentSearchAndResults.search, ("<b>" + $currentSearchAndResults.search + "</b>"))}<br>
+               <SearchSelect contentArray={suggestion}>{@html suggestion[schema.indexOf($currentSearchAndResults.searchFilter)].replaceAll($currentSearchAndResults.search, ("<b>" + $currentSearchAndResults.search + "</b>"))}</SearchSelect>
           {/each}
      </div>
-</main>
+</section>
 
 <style>
      
