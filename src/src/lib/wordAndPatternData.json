@@ -1,5 +1,5 @@
 {
-     "$schema": ["en-us", "en-gb", "explanation"],
+     "$schema": ["en-US", "en-GB", "Explanation/Examples"],
      "words": [
           ["acronym", "initialism", "acronyms are pronounced as words (e.g. NATO); initialisms consist of initial letters pronounced separately (e.g. BBC)"],
           ["adapter", "adaptor", ""],
@@ -98,7 +98,7 @@
           ["chips", "crisps", ""],
           ["cipher", "cypher", ""],
           ["coffee shop", "café", ""],
-          ["cold", "neutral", "the connection in an electrical circuit that returns current to the source"],
+          ["cold", "neutral", "the connection in an electrical circuit that returns currentSearchAndResults to the source"],
           ["color", "colour", ""],
           ["colored", "coloured", ""],
           ["colorer", "colourer", ""],

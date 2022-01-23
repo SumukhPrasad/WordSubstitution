@@ -1,3 +1,3 @@
 import { writable } from 'svelte/store';
 
-export let current = writable({});
+export let currentSearchAndResults = writable({});
