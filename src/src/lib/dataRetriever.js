@@ -12,4 +12,8 @@ function getData(selector, value) {
      return matchingElements;
 }
 
-export { getData };
+function getSchema() {
+     return data.$schema;
+}
+
+export { getData, getSchema };

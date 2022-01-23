@@ -9,7 +9,7 @@
 			max-width: 600px;
 			max-height: 300px;
 		}
-		</style>
+	</style>
 </svelte:head>
 <main>
 	<WordInput />
