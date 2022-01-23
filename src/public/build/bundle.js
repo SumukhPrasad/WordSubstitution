@@ -3461,10 +3461,10 @@ var app = (function () {
     const wordList = data.words;
     const patternsList = data.patterns;
 
-    function getData(selector, value) {
+    function getData(selector, filter, value) {
          var matchingElements = [];
          (selector == "word" ? wordList : patternsList).forEach((element) => {
-              if (element[0].toUpperCase().includes(value.toUpperCase()) || element[1].toUpperCase().includes(value.toUpperCase())) {
+              if (element[getSchema().indexOf(filter)].toUpperCase().includes(value.toUpperCase())) {
                    matchingElements.push(element);
               }
          });
@@ -3530,14 +3530,55 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
+    	child_ctx[6] = list[i];
     	return child_ctx;
     }
 
-    // (25:10) {#each $currentSearchAndResults.content as suggestionArray}
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[9] = list[i];
+    	return child_ctx;
+    }
+
+    // (27:15) {#each schema as option}
+    function create_each_block_1(ctx) {
+    	let option;
+    	let t_value = /*option*/ ctx[9] + "";
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.__value = /*option*/ ctx[9];
+    			option.value = option.__value;
+    			add_location(option, file$2, 27, 20, 1143);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(27:15) {#each schema as option}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (33:10) {#each $currentSearchAndResults.content as suggestion}
     function create_each_block$1(ctx) {
     	let html_tag;
-    	let raw_value = (/*suggestionArray*/ ctx[4][0] + " / " + /*suggestionArray*/ ctx[4][1]).replaceAll(/*$currentSearchAndResults*/ ctx[0].search, "<b>" + /*$currentSearchAndResults*/ ctx[0].search + "</b>") + "";
+    	let raw_value = /*suggestion*/ ctx[6][/*schema*/ ctx[1].indexOf(/*$currentSearchAndResults*/ ctx[0].searchFilter)].replaceAll(/*$currentSearchAndResults*/ ctx[0].search, "<b>" + /*$currentSearchAndResults*/ ctx[0].search + "</b>") + "";
     	let br;
 
     	const block = {
@@ -3545,14 +3586,14 @@ var app = (function () {
     			html_tag = new HtmlTag();
     			br = element("br");
     			html_tag.a = br;
-    			add_location(br, file$2, 25, 168, 1128);
+    			add_location(br, file$2, 33, 184, 1500);
     		},
     		m: function mount(target, anchor) {
     			html_tag.m(raw_value, target, anchor);
     			insert_dev(target, br, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$currentSearchAndResults*/ 1 && raw_value !== (raw_value = (/*suggestionArray*/ ctx[4][0] + " / " + /*suggestionArray*/ ctx[4][1]).replaceAll(/*$currentSearchAndResults*/ ctx[0].search, "<b>" + /*$currentSearchAndResults*/ ctx[0].search + "</b>") + "")) html_tag.p(raw_value);
+    			if (dirty & /*$currentSearchAndResults*/ 1 && raw_value !== (raw_value = /*suggestion*/ ctx[6][/*schema*/ ctx[1].indexOf(/*$currentSearchAndResults*/ ctx[0].searchFilter)].replaceAll(/*$currentSearchAndResults*/ ctx[0].search, "<b>" + /*$currentSearchAndResults*/ ctx[0].search + "</b>") + "")) html_tag.p(raw_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) html_tag.d();
@@ -3564,7 +3605,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(25:10) {#each $currentSearchAndResults.content as suggestionArray}",
+    		source: "(33:10) {#each $currentSearchAndResults.content as suggestion}",
     		ctx
     	});
 
@@ -3575,15 +3616,26 @@ var app = (function () {
     	let main;
     	let form;
     	let input;
-    	let br;
+    	let br0;
     	let t0;
-    	let select;
+    	let select0;
     	let option0;
     	let option1;
+    	let br1;
     	let t3;
+    	let select1;
+    	let t4;
     	let div;
     	let mounted;
     	let dispose;
+    	let each_value_1 = /*schema*/ ctx[1];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
     	let each_value = /*$currentSearchAndResults*/ ctx[0].content;
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -3597,14 +3649,22 @@ var app = (function () {
     			main = element("main");
     			form = element("form");
     			input = element("input");
-    			br = element("br");
+    			br0 = element("br");
     			t0 = text("\n          Search for: ");
-    			select = element("select");
+    			select0 = element("select");
     			option0 = element("option");
     			option0.textContent = "Words";
     			option1 = element("option");
     			option1.textContent = "Patterns";
-    			t3 = space();
+    			br1 = element("br");
+    			t3 = text("\n          Search in: ");
+    			select1 = element("select");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t4 = space();
     			div = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -3613,19 +3673,22 @@ var app = (function () {
 
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Word");
-    			add_location(input, file$2, 17, 10, 579);
-    			add_location(br, file$2, 17, 86, 655);
+    			add_location(input, file$2, 20, 10, 711);
+    			add_location(br0, file$2, 20, 86, 787);
     			option0.__value = "word";
     			option0.value = option0.__value;
-    			add_location(option0, file$2, 19, 15, 753);
+    			add_location(option0, file$2, 22, 15, 885);
     			option1.__value = "pattern";
     			option1.value = option1.__value;
-    			add_location(option1, file$2, 20, 15, 804);
-    			if (/*$currentSearchAndResults*/ ctx[0].selector === void 0) add_render_callback(() => /*select_change_handler*/ ctx[3].call(select));
-    			add_location(select, file$2, 18, 22, 682);
-    			add_location(form, file$2, 16, 5, 537);
-    			add_location(div, file$2, 23, 5, 884);
-    			add_location(main, file$2, 15, 0, 525);
+    			add_location(option1, file$2, 23, 15, 936);
+    			if (/*$currentSearchAndResults*/ ctx[0].selector === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[4].call(select0));
+    			add_location(select0, file$2, 21, 22, 814);
+    			add_location(br1, file$2, 24, 19, 997);
+    			if (/*$currentSearchAndResults*/ ctx[0].searchFilter === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[5].call(select1));
+    			add_location(select1, file$2, 25, 21, 1023);
+    			add_location(form, file$2, 19, 5, 669);
+    			add_location(div, file$2, 31, 5, 1245);
+    			add_location(main, file$2, 18, 0, 657);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3634,13 +3697,22 @@ var app = (function () {
     			insert_dev(target, main, anchor);
     			append_dev(main, form);
     			append_dev(form, input);
-    			append_dev(form, br);
+    			append_dev(form, br0);
     			append_dev(form, t0);
-    			append_dev(form, select);
-    			append_dev(select, option0);
-    			append_dev(select, option1);
-    			select_option(select, /*$currentSearchAndResults*/ ctx[0].selector);
-    			append_dev(main, t3);
+    			append_dev(form, select0);
+    			append_dev(select0, option0);
+    			append_dev(select0, option1);
+    			select_option(select0, /*$currentSearchAndResults*/ ctx[0].selector);
+    			append_dev(form, br1);
+    			append_dev(form, t3);
+    			append_dev(form, select1);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(select1, null);
+    			}
+
+    			select_option(select1, /*$currentSearchAndResults*/ ctx[0].searchFilter);
+    			append_dev(main, t4);
     			append_dev(main, div);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -3649,9 +3721,10 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input, "keyup", prevent_default(/*handleKeyup*/ ctx[1]), false, true, false),
-    					listen_dev(select, "change", /*select_change_handler*/ ctx[3]),
-    					listen_dev(form, "submit", prevent_default(/*submit_handler*/ ctx[2]), false, true, false)
+    					listen_dev(input, "keyup", prevent_default(/*handleKeyup*/ ctx[2]), false, true, false),
+    					listen_dev(select0, "change", /*select0_change_handler*/ ctx[4]),
+    					listen_dev(select1, "change", /*select1_change_handler*/ ctx[5]),
+    					listen_dev(form, "submit", prevent_default(/*submit_handler*/ ctx[3]), false, true, false)
     				];
 
     				mounted = true;
@@ -3659,10 +3732,38 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*$currentSearchAndResults*/ 1) {
-    				select_option(select, /*$currentSearchAndResults*/ ctx[0].selector);
+    				select_option(select0, /*$currentSearchAndResults*/ ctx[0].selector);
+    			}
+
+    			if (dirty & /*schema*/ 2) {
+    				each_value_1 = /*schema*/ ctx[1];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(select1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
     			}
 
     			if (dirty & /*$currentSearchAndResults*/ 1) {
+    				select_option(select1, /*$currentSearchAndResults*/ ctx[0].searchFilter);
+    			}
+
+    			if (dirty & /*$currentSearchAndResults, schema*/ 3) {
     				each_value = /*$currentSearchAndResults*/ ctx[0].content;
     				validate_each_argument(each_value);
     				let i;
@@ -3690,6 +3791,7 @@ var app = (function () {
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
+    			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
     			mounted = false;
     			run_all(dispose);
@@ -3713,12 +3815,14 @@ var app = (function () {
     	component_subscribe($$self, currentSearchAndResults, $$value => $$invalidate(0, $currentSearchAndResults = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('WordInput', slots, []);
+    	const schema = getSchema().slice(0, -1);
 
     	set_store_value(
     		currentSearchAndResults,
     		$currentSearchAndResults = {
     			content: [],
     			search: null,
+    			searchFilter: schema[0],
     			selector: "word"
     		},
     		$currentSearchAndResults
@@ -3727,7 +3831,7 @@ var app = (function () {
     	function handleKeyup(e) {
     		if (e.target.value == '') return;
     		set_store_value(currentSearchAndResults, $currentSearchAndResults.search = e.target.value, $currentSearchAndResults);
-    		set_store_value(currentSearchAndResults, $currentSearchAndResults.content = getData($currentSearchAndResults.selector, $currentSearchAndResults.search), $currentSearchAndResults);
+    		set_store_value(currentSearchAndResults, $currentSearchAndResults.content = getData($currentSearchAndResults.selector, $currentSearchAndResults.searchFilter, $currentSearchAndResults.search), $currentSearchAndResults);
     	}
 
     	const writable_props = [];
@@ -3740,19 +3844,33 @@ var app = (function () {
     		bubble.call(this, $$self, event);
     	}
 
-    	function select_change_handler() {
+    	function select0_change_handler() {
     		$currentSearchAndResults.selector = select_value(this);
+    		currentSearchAndResults.set($currentSearchAndResults);
+    	}
+
+    	function select1_change_handler() {
+    		$currentSearchAndResults.searchFilter = select_value(this);
     		currentSearchAndResults.set($currentSearchAndResults);
     	}
 
     	$$self.$capture_state = () => ({
     		getData,
+    		getSchema,
     		currentSearchAndResults,
+    		schema,
     		handleKeyup,
     		$currentSearchAndResults
     	});
 
-    	return [$currentSearchAndResults, handleKeyup, submit_handler, select_change_handler];
+    	return [
+    		$currentSearchAndResults,
+    		schema,
+    		handleKeyup,
+    		submit_handler,
+    		select0_change_handler,
+    		select1_change_handler
+    	];
     }
 
     class WordInput extends SvelteComponentDev {
