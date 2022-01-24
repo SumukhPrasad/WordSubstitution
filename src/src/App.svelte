@@ -25,10 +25,9 @@
 	main {
 		width: 100%;
 		height: 100%;
-		background-color: #eee;
 		display: grid;
 		grid-template-columns: 200px auto;
-		column-gap: 15px;
+		column-gap: 5px;
 		font-size: 15px;
 	}
 </style>

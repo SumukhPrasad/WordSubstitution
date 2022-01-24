@@ -3782,7 +3782,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = /*option*/ ctx[10];
     			option.value = option.__value;
-    			add_location(option, file$2, 29, 25, 1436);
+    			add_location(option, file$2, 29, 25, 1448);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -3964,30 +3964,30 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			set_style(input, "width", "100%");
+    			set_style(input, "width", "calc(100% - 30px)");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "autocapitalize", "false");
     			attr_dev(input, "autocomplete", "false");
     			attr_dev(input, "spellcheck", "false");
     			attr_dev(input, "placeholder", "Word");
     			add_location(input, file$2, 22, 15, 885);
-    			add_location(br0, file$2, 22, 175, 1045);
+    			add_location(br0, file$2, 22, 187, 1057);
     			option0.__value = "word";
     			option0.value = option0.__value;
-    			add_location(option0, file$2, 24, 20, 1153);
+    			add_location(option0, file$2, 24, 20, 1165);
     			option1.__value = "pattern";
     			option1.value = option1.__value;
-    			add_location(option1, file$2, 25, 20, 1209);
+    			add_location(option1, file$2, 25, 20, 1221);
     			if (/*$currentSearchAndResults*/ ctx[0].selector === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[4].call(select0));
-    			add_location(select0, file$2, 23, 27, 1077);
-    			add_location(br1, file$2, 26, 24, 1275);
+    			add_location(select0, file$2, 23, 27, 1089);
+    			add_location(br1, file$2, 26, 24, 1287);
     			if (/*$currentSearchAndResults*/ ctx[0].searchFilter === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[5].call(select1));
-    			add_location(select1, file$2, 27, 26, 1306);
+    			add_location(select1, file$2, 27, 26, 1318);
     			add_location(form, file$2, 21, 10, 838);
     			attr_dev(div0, "class", "word-input-form svelte-vasdzy");
     			add_location(div0, file$2, 20, 5, 798);
     			attr_dev(div1, "class", "word-suggestions svelte-vasdzy");
-    			add_location(div1, file$2, 34, 5, 1565);
+    			add_location(div1, file$2, 34, 5, 1577);
     			attr_dev(section, "class", "word-input svelte-vasdzy");
     			add_location(section, file$2, 19, 0, 764);
     		},
@@ -4472,7 +4472,7 @@ var app = (function () {
     			t2 = space();
     			create_component(wordmeanings.$$.fragment);
     			add_location(style, file, 6, 1, 153);
-    			attr_dev(main, "class", "svelte-18i99yo");
+    			attr_dev(main, "class", "svelte-o433ea");
     			add_location(main, file, 18, 0, 283);
     		},
     		l: function claim(nodes) {

@@ -20,7 +20,7 @@
 <section class="word-input">
      <div class="word-input-form">
           <form on:submit|preventDefault>
-               <input style="width: 100%;" type="text" autocapitalize="false" autocomplete="false" spellcheck="false" placeholder="Word" on:keyup|preventDefault={handleKeyup}><br>
+               <input style="width: calc(100% - 30px)" type="text" autocapitalize="false" autocomplete="false" spellcheck="false" placeholder="Word" on:keyup|preventDefault={handleKeyup}><br>
                Search for: <select bind:value={$currentSearchAndResults.selector}>
                     <option value="word">Words</option>
                     <option value="pattern">Patterns</option>
