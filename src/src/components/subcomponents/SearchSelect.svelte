@@ -11,6 +11,14 @@
 </div>
 
 <style>
+     .searchResult {
+          height: 20px;
+          border-radius: 5px;
+          padding-right: 2px;
+          padding-left: 2px;
+          width: auto;
+          font-size: 17px;
+     }
      .searchResult[isActive="true"] { 
           background-color: #006cff;
           color: #fff;

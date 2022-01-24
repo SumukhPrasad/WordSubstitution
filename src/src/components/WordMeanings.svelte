@@ -7,16 +7,26 @@
 
 <section>
      {#if $currentWord == null}
-          No word/pattern selected.
+          <div class="placeholder-text">
+               No word/pattern selected.
+          </div>
      {:else}
-          {schema[0]}: {$currentWord[0]}<br>
-          {schema[1]}: {$currentWord[1]}<br>
-          {schema[2]}: {$currentWord[2] == "" ? "None." : $currentWord[2]}<br>
+          <b>{schema[0]}</b>: {$currentWord[0]}<br>
+          <b>{schema[1]}</b>: {$currentWord[1]}<br>
+          <b>{schema[2]}</b>: {$currentWord[2] == "" ? "None." : $currentWord[2]}<br>
      {/if}
 </section>
 
 <style>
-     
+     .placeholder-text {
+          color: rgba(0, 0, 0, 0.5);
+          font-size: 25px;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+     }
 </style>
 
 

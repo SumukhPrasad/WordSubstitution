@@ -17,20 +17,22 @@
      }
 </script>
 
-<section>
-     <form on:submit|preventDefault>
-          <input type="text" autocapitalize="false" autocomplete="false" spellcheck="false" placeholder="Word" on:keyup|preventDefault={handleKeyup}><br>
-          Search for: <select bind:value={$currentSearchAndResults.selector}>
-               <option value="word">Words</option>
-               <option value="pattern">Patterns</option>
-          </select><br>
-          Search in: <select bind:value={$currentSearchAndResults.searchFilter}>
-               {#each schema as option}
-                    <option value={option}>{option}</option>
-               {/each}
-          </select>
-     </form>
-     <div>
+<section class="word-input">
+     <div class="word-input-form">
+          <form on:submit|preventDefault>
+               <input style="width: 100%;" type="text" autocapitalize="false" autocomplete="false" spellcheck="false" placeholder="Word" on:keyup|preventDefault={handleKeyup}><br>
+               Search for: <select bind:value={$currentSearchAndResults.selector}>
+                    <option value="word">Words</option>
+                    <option value="pattern">Patterns</option>
+               </select><br>
+               Search in: <select bind:value={$currentSearchAndResults.searchFilter}>
+                    {#each schema as option}
+                         <option value={option}>{option}</option>
+                    {/each}
+               </select>
+          </form>
+     </div>
+     <div class="word-suggestions">
           {#each $currentSearchAndResults.content as suggestion}
                <SearchSelect contentArray={suggestion}>{@html suggestion[schema.indexOf($currentSearchAndResults.searchFilter)].replaceAll($currentSearchAndResults.search, ("<b>" + $currentSearchAndResults.search + "</b>"))}</SearchSelect>
           {/each}
@@ -38,7 +40,18 @@
 </section>
 
 <style>
-     
+     .word-input {
+          height: 100%;
+     }
+
+     .word-input-form {
+          height: 70px;
+     }
+
+     .word-suggestions {
+          height: 130px;
+          overflow: scroll;
+     }
 </style>
 
 

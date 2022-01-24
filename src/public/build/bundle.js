@@ -145,6 +145,14 @@ var app = (function () {
     function children(element) {
         return Array.from(element.childNodes);
     }
+    function set_style(node, key, value, important) {
+        if (value === null) {
+            node.style.removeProperty(key);
+        }
+        else {
+            node.style.setProperty(key, value, important ? 'important' : '');
+        }
+    }
     function select_option(select, value) {
         for (let i = 0; i < select.options.length; i += 1) {
             const option = select.options[i];
@@ -3608,7 +3616,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (default_slot) default_slot.c();
-    			attr_dev(div, "class", "searchResult svelte-1mhegtj");
+    			attr_dev(div, "class", "searchResult svelte-2pq5aq");
     			attr_dev(div, "isactive", div_isactive_value = /*$currentWord*/ ctx[1] == /*contentArray*/ ctx[0]);
     			add_location(div, file$3, 8, 0, 188);
     		},
@@ -3762,7 +3770,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (28:15) {#each schema as option}
+    // (29:20) {#each schema as option}
     function create_each_block_1(ctx) {
     	let option;
     	let t_value = /*option*/ ctx[10] + "";
@@ -3774,7 +3782,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = /*option*/ ctx[10];
     			option.value = option.__value;
-    			add_location(option, file$2, 28, 20, 1316);
+    			add_location(option, file$2, 29, 25, 1436);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -3790,14 +3798,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(28:15) {#each schema as option}",
+    		source: "(29:20) {#each schema as option}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (35:15) <SearchSelect contentArray={suggestion}>
+    // (37:15) <SearchSelect contentArray={suggestion}>
     function create_default_slot(ctx) {
     	let html_tag;
     	let raw_value = /*suggestion*/ ctx[7][/*schema*/ ctx[1].indexOf(/*$currentSearchAndResults*/ ctx[0].searchFilter)].replaceAll(/*$currentSearchAndResults*/ ctx[0].search, "<b>" + /*$currentSearchAndResults*/ ctx[0].search + "</b>") + "";
@@ -3826,14 +3834,14 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(35:15) <SearchSelect contentArray={suggestion}>",
+    		source: "(37:15) <SearchSelect contentArray={suggestion}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (34:10) {#each $currentSearchAndResults.content as suggestion}
+    // (36:10) {#each $currentSearchAndResults.content as suggestion}
     function create_each_block(ctx) {
     	let searchselect;
     	let current;
@@ -3883,7 +3891,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(34:10) {#each $currentSearchAndResults.content as suggestion}",
+    		source: "(36:10) {#each $currentSearchAndResults.content as suggestion}",
     		ctx
     	});
 
@@ -3892,6 +3900,7 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let section;
+    	let div0;
     	let form;
     	let input;
     	let br0;
@@ -3903,7 +3912,7 @@ var app = (function () {
     	let t3;
     	let select1;
     	let t4;
-    	let div;
+    	let div1;
     	let current;
     	let mounted;
     	let dispose;
@@ -3930,17 +3939,18 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			section = element("section");
+    			div0 = element("div");
     			form = element("form");
     			input = element("input");
     			br0 = element("br");
-    			t0 = text("\n          Search for: ");
+    			t0 = text("\n               Search for: ");
     			select0 = element("select");
     			option0 = element("option");
     			option0.textContent = "Words";
     			option1 = element("option");
     			option1.textContent = "Patterns";
     			br1 = element("br");
-    			t3 = text("\n          Search in: ");
+    			t3 = text("\n               Search in: ");
     			select1 = element("select");
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
@@ -3948,32 +3958,37 @@ var app = (function () {
     			}
 
     			t4 = space();
-    			div = element("div");
+    			div1 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
+    			set_style(input, "width", "100%");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "autocapitalize", "false");
     			attr_dev(input, "autocomplete", "false");
     			attr_dev(input, "spellcheck", "false");
     			attr_dev(input, "placeholder", "Word");
-    			add_location(input, file$2, 21, 10, 821);
-    			add_location(br0, file$2, 21, 149, 960);
+    			add_location(input, file$2, 22, 15, 885);
+    			add_location(br0, file$2, 22, 175, 1045);
     			option0.__value = "word";
     			option0.value = option0.__value;
-    			add_location(option0, file$2, 23, 15, 1058);
+    			add_location(option0, file$2, 24, 20, 1153);
     			option1.__value = "pattern";
     			option1.value = option1.__value;
-    			add_location(option1, file$2, 24, 15, 1109);
+    			add_location(option1, file$2, 25, 20, 1209);
     			if (/*$currentSearchAndResults*/ ctx[0].selector === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[4].call(select0));
-    			add_location(select0, file$2, 22, 22, 987);
-    			add_location(br1, file$2, 25, 19, 1170);
+    			add_location(select0, file$2, 23, 27, 1077);
+    			add_location(br1, file$2, 26, 24, 1275);
     			if (/*$currentSearchAndResults*/ ctx[0].searchFilter === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[5].call(select1));
-    			add_location(select1, file$2, 26, 21, 1196);
-    			add_location(form, file$2, 20, 5, 779);
-    			add_location(div, file$2, 32, 5, 1418);
+    			add_location(select1, file$2, 27, 26, 1306);
+    			add_location(form, file$2, 21, 10, 838);
+    			attr_dev(div0, "class", "word-input-form svelte-ocfwrv");
+    			add_location(div0, file$2, 20, 5, 798);
+    			attr_dev(div1, "class", "word-suggestions svelte-ocfwrv");
+    			add_location(div1, file$2, 34, 5, 1565);
+    			attr_dev(section, "class", "word-input svelte-ocfwrv");
     			add_location(section, file$2, 19, 0, 764);
     		},
     		l: function claim(nodes) {
@@ -3981,7 +3996,8 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
-    			append_dev(section, form);
+    			append_dev(section, div0);
+    			append_dev(div0, form);
     			append_dev(form, input);
     			append_dev(form, br0);
     			append_dev(form, t0);
@@ -3999,10 +4015,10 @@ var app = (function () {
 
     			select_option(select1, /*$currentSearchAndResults*/ ctx[0].searchFilter);
     			append_dev(section, t4);
-    			append_dev(section, div);
+    			append_dev(section, div1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div, null);
+    				each_blocks[i].m(div1, null);
     			}
 
     			current = true;
@@ -4066,7 +4082,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div, null);
+    						each_blocks[i].m(div1, null);
     					}
     				}
 
@@ -4205,24 +4221,21 @@ var app = (function () {
     /* src/components/WordMeanings.svelte generated by Svelte v3.46.2 */
     const file$1 = "src/components/WordMeanings.svelte";
 
-    // (11:5) {:else}
+    // (13:5) {:else}
     function create_else_block(ctx) {
-    	let t0_value = /*schema*/ ctx[1][0] + "";
-    	let t0;
+    	let b0;
     	let t1;
     	let t2_value = /*$currentWord*/ ctx[0][0] + "";
     	let t2;
     	let br0;
     	let t3;
-    	let t4_value = /*schema*/ ctx[1][1] + "";
-    	let t4;
+    	let b1;
     	let t5;
     	let t6_value = /*$currentWord*/ ctx[0][1] + "";
     	let t6;
     	let br1;
     	let t7;
-    	let t8_value = /*schema*/ ctx[1][2] + "";
-    	let t8;
+    	let b2;
     	let t9;
 
     	let t10_value = (/*$currentWord*/ ctx[0][2] == ""
@@ -4234,36 +4247,42 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			t0 = text(t0_value);
+    			b0 = element("b");
+    			b0.textContent = `${/*schema*/ ctx[1][0]}`;
     			t1 = text(": ");
     			t2 = text(t2_value);
     			br0 = element("br");
     			t3 = space();
-    			t4 = text(t4_value);
+    			b1 = element("b");
+    			b1.textContent = `${/*schema*/ ctx[1][1]}`;
     			t5 = text(": ");
     			t6 = text(t6_value);
     			br1 = element("br");
     			t7 = space();
-    			t8 = text(t8_value);
+    			b2 = element("b");
+    			b2.textContent = `${/*schema*/ ctx[1][2]}`;
     			t9 = text(": ");
     			t10 = text(t10_value);
     			br2 = element("br");
-    			add_location(br0, file$1, 11, 40, 300);
-    			add_location(br1, file$1, 12, 40, 345);
-    			add_location(br2, file$1, 13, 74, 424);
+    			add_location(b0, file$1, 13, 10, 333);
+    			add_location(br0, file$1, 13, 47, 370);
+    			add_location(b1, file$1, 14, 10, 385);
+    			add_location(br1, file$1, 14, 47, 422);
+    			add_location(b2, file$1, 15, 10, 437);
+    			add_location(br2, file$1, 15, 81, 508);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, t0, anchor);
+    			insert_dev(target, b0, anchor);
     			insert_dev(target, t1, anchor);
     			insert_dev(target, t2, anchor);
     			insert_dev(target, br0, anchor);
     			insert_dev(target, t3, anchor);
-    			insert_dev(target, t4, anchor);
+    			insert_dev(target, b1, anchor);
     			insert_dev(target, t5, anchor);
     			insert_dev(target, t6, anchor);
     			insert_dev(target, br1, anchor);
     			insert_dev(target, t7, anchor);
-    			insert_dev(target, t8, anchor);
+    			insert_dev(target, b2, anchor);
     			insert_dev(target, t9, anchor);
     			insert_dev(target, t10, anchor);
     			insert_dev(target, br2, anchor);
@@ -4277,17 +4296,17 @@ var app = (function () {
     			: /*$currentWord*/ ctx[0][2]) + "")) set_data_dev(t10, t10_value);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(b0);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(t2);
     			if (detaching) detach_dev(br0);
     			if (detaching) detach_dev(t3);
-    			if (detaching) detach_dev(t4);
+    			if (detaching) detach_dev(b1);
     			if (detaching) detach_dev(t5);
     			if (detaching) detach_dev(t6);
     			if (detaching) detach_dev(br1);
     			if (detaching) detach_dev(t7);
-    			if (detaching) detach_dev(t8);
+    			if (detaching) detach_dev(b2);
     			if (detaching) detach_dev(t9);
     			if (detaching) detach_dev(t10);
     			if (detaching) detach_dev(br2);
@@ -4298,7 +4317,7 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(11:5) {:else}",
+    		source: "(13:5) {:else}",
     		ctx
     	});
 
@@ -4307,18 +4326,21 @@ var app = (function () {
 
     // (9:5) {#if $currentWord == null}
     function create_if_block(ctx) {
-    	let t;
+    	let div;
 
     	const block = {
     		c: function create() {
-    			t = text("No word/pattern selected.");
+    			div = element("div");
+    			div.textContent = "No word/pattern selected.";
+    			attr_dev(div, "class", "placeholder-text svelte-197pom4");
+    			add_location(div, file$1, 9, 10, 221);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, div, anchor);
     		},
     		p: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(div);
     		}
     	};
 
@@ -4443,15 +4465,15 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			style = element("style");
-    			style.textContent = "body {\n\t\t\twidth: 600px;\n\t\t\theight: 300px;\n\t\t}";
+    			style.textContent = "html {\n\t\t\twidth: 620px;\n\t\t\theight: 220px;\n\t\t}\n\n\t\tbody {\n\t\t\twidth: 600px;\n\t\t\theight: 200px;\n\t\t}";
     			t1 = space();
     			main = element("main");
     			create_component(wordinput.$$.fragment);
     			t2 = space();
     			create_component(wordmeanings.$$.fragment);
     			add_location(style, file, 6, 1, 153);
-    			attr_dev(main, "class", "svelte-1l61xbu");
-    			add_location(main, file, 13, 0, 234);
+    			attr_dev(main, "class", "svelte-18i99yo");
+    			add_location(main, file, 18, 0, 283);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
