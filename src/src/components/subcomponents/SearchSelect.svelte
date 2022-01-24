@@ -1,7 +1,7 @@
 <script>
      import { currentWord } from "../../lib/sharedData";
      function updateSearchTerm() {
-          $currentWord = contentArray;
+          $currentWord = $currentWord == contentArray ? null : contentArray;
      }
      export let contentArray;
 </script>

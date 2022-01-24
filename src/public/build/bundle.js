@@ -3618,7 +3618,7 @@ var app = (function () {
     			if (default_slot) default_slot.c();
     			attr_dev(div, "class", "searchResult svelte-2pq5aq");
     			attr_dev(div, "isactive", div_isactive_value = /*$currentWord*/ ctx[1] == /*contentArray*/ ctx[0]);
-    			add_location(div, file$3, 8, 0, 188);
+    			add_location(div, file$3, 8, 0, 226);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3693,7 +3693,7 @@ var app = (function () {
     	validate_slots('SearchSelect', slots, ['default']);
 
     	function updateSearchTerm() {
-    		set_store_value(currentWord, $currentWord = contentArray, $currentWord);
+    		set_store_value(currentWord, $currentWord = $currentWord == contentArray ? null : contentArray, $currentWord);
     	}
 
     	let { contentArray } = $$props;
