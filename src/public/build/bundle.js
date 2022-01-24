@@ -3984,11 +3984,11 @@ var app = (function () {
     			if (/*$currentSearchAndResults*/ ctx[0].searchFilter === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[5].call(select1));
     			add_location(select1, file$2, 27, 26, 1306);
     			add_location(form, file$2, 21, 10, 838);
-    			attr_dev(div0, "class", "word-input-form svelte-ocfwrv");
+    			attr_dev(div0, "class", "word-input-form svelte-vasdzy");
     			add_location(div0, file$2, 20, 5, 798);
-    			attr_dev(div1, "class", "word-suggestions svelte-ocfwrv");
+    			attr_dev(div1, "class", "word-suggestions svelte-vasdzy");
     			add_location(div1, file$2, 34, 5, 1565);
-    			attr_dev(section, "class", "word-input svelte-ocfwrv");
+    			attr_dev(section, "class", "word-input svelte-vasdzy");
     			add_location(section, file$2, 19, 0, 764);
     		},
     		l: function claim(nodes) {
@@ -4332,7 +4332,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			div.textContent = "No word/pattern selected.";
-    			attr_dev(div, "class", "placeholder-text svelte-197pom4");
+    			attr_dev(div, "class", "placeholder-text svelte-10ytm5");
     			add_location(div, file$1, 9, 10, 221);
     		},
     		m: function mount(target, anchor) {

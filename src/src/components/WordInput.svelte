@@ -42,6 +42,10 @@
 <style>
      .word-input {
           height: 100%;
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -o-user-select: none;
      }
 
      .word-input-form {
