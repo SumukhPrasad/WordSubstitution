@@ -547,8 +547,8 @@ var app = (function () {
     }
 
     var $schema = [
-    	"en-US",
-    	"en-GB",
+    	"American English",
+    	"British English",
     	"Explanation/Examples"
     ];
     var words = [
@@ -580,12 +580,12 @@ var app = (function () {
     	[
     		"already",
     		"",
-    		"some en-us speakers nonsensically add 'already' to the end of sentences => remove"
+    		"some American English speakers nonsensically add 'already' to the end of sentences => remove"
     	],
     	[
     		"aluminum",
     		"aluminium",
-    		"en_US usage is based on the brand Aluminum, en_GB based on the element"
+    		"American English usage is based on the brand Aluminum, British English based on the element"
     	],
     	[
     		"analog",
@@ -1084,8 +1084,8 @@ var app = (function () {
     	],
     	[
     		"congressman",
-    		"Member of Parliament, MP",
-    		""
+    		"Member of Parliament",
+    		"Also called \"MP\" in British English."
     	],
     	[
     		"cookie",
@@ -1420,7 +1420,7 @@ var app = (function () {
     	[
     		"fag",
     		"homosexual",
-    		"'fag' means 'cigarette' in en-GB"
+    		"'fag' means 'cigarette' in British English"
     	],
     	[
     		"fall",
@@ -1530,7 +1530,7 @@ var app = (function () {
     	[
     		"forever",
     		"for ever",
-    		"In en_GB, 'for ever' means for eternity (or a very long time), as in \"I have been waiting for you for ever.\" 'Forever' means continually, always, as in \"They are forever arguing.\""
+    		"In British English, 'for ever' means for eternity (or a very long time), as in \"I have been waiting for you for ever.\" 'Forever' means continually, always, as in \"They are forever arguing.\""
     	],
     	[
     		"formulas",
@@ -1885,7 +1885,7 @@ var app = (function () {
     	[
     		"jelly",
     		"jam",
-    		"in en_US, 'jelly' can mean 'jam'"
+    		"in American English, 'jelly' can mean 'jam'"
     	],
     	[
     		"jeweled",
@@ -2160,7 +2160,7 @@ var app = (function () {
     	[
     		"most",
     		"almost",
-    		"some en-us speakers erroneously use 'most' to mean 'almost'"
+    		"some American English speakers erroneously use 'most' to mean 'almost'"
     	],
     	[
     		"movie",
